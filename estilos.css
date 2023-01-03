@@ -111,13 +111,24 @@ hr {
     border: none;
     margin: 0 5px;
     color: white;
+    background-color: blue;
     border-radius: 50px;
 }
 
 .btn-editar {
     background-color: green;
+    padding: 5px 10px;
+    border: none;
+    margin: 0 5px;
+    color: white;
+    border-radius: 50px;
 }
 
 .btn-eliminar {
     background-color: red;
+    padding: 5px 10px;
+    border: none;
+    margin: 0 5px;
+    color: white;
+    border-radius: 50px;
 }

@@ -56,30 +56,89 @@ function mostrarEmpleados() {
 
     const divEmpleados = document.querySelector('.div-empleados');
     
+    const table = document.createElement('table')
+    table.setAttribute('id', 'lista')
+    table.setAttribute('border', 1)
+
+    const tHead = document.createElement('thead')
+    const trHead = document.createElement('tr')
+    
+    const thId = document.createElement('th')
+    const textThId = document.createTextNode('ID')
+    thId.appendChild(textThId)
+
+    const thNombre = document.createElement('th')
+    const textThNombre = document.createTextNode('NOMBRE')
+    thNombre.appendChild(textThNombre)
+
+    const thPuesto = document.createElement('th')
+    const textThPuesto = document.createTextNode('PUESTO')
+    thPuesto.appendChild(textThPuesto)
+
+    const thEditar = document.createElement('th');
+    const textThEditar = document.createTextNode('EDITAR');
+    thEditar.appendChild(textThEditar)
+
+    const thBorrar = document.createElement('th');
+    const textThBorrar = document.createTextNode('BORRAR');
+    thBorrar.appendChild(textThBorrar)
+
+    trHead.appendChild(thId)
+    trHead.appendChild(thNombre)
+    trHead.appendChild(thPuesto)
+    trHead.appendChild(thEditar)
+    trHead.appendChild(thBorrar)
+
+    tHead.appendChild(trHead)
+
+    const tBody = document.createElement('tbody')
+
     listaEmpleados.forEach(empleado => {
-        const {id, nombre, puesto} = empleado;
+        const { id, nombre, puesto } = empleado
 
-        const parrafo = document.createElement('p');
-        parrafo.textContent = `${id} - ${nombre} - ${puesto} - `;
-        parrafo.dataset.id = id;
+        const trBody = document.createElement('tr')
 
+        const tdId = document.createElement('td');
+        const textTdId = document.createTextNode(id);
+        tdId.appendChild(textTdId)
+
+        const tdNombre = document.createElement('td');
+        const textTdNombre = document.createTextNode(nombre);
+        tdNombre.appendChild(textTdNombre)
+
+        const tdPuesto = document.createElement('td');
+        const textTdPuesto = document.createTextNode(puesto);
+        tdPuesto.appendChild(textTdPuesto)
+
+        const tdEditarBoton = document.createElement('td');
         const editarBoton = document.createElement('button');
+        editarBoton.setAttribute('id', 'id-btn-editar');
         editarBoton.onclick = () => cargarEmpleado(empleado);
         editarBoton.textContent = 'Editar';
-        editarBoton.classList.add('btn', 'btn-editar');
-        parrafo.append(editarBoton);
+        editarBoton.classList.add('btn-editar');
+        tdEditarBoton.appendChild(editarBoton);
 
-        const eliminarBoton = document.createElement('button');
+        let tdEliminarBoton = document.createElement('td');
+        let eliminarBoton = document.createElement('button');
+        eliminarBoton.setAttribute('id', 'id-btn-eliminar');
         eliminarBoton.onclick = () => eliminarEmpleado(id);
         eliminarBoton.textContent = 'Eliminar';
-        eliminarBoton.classList.add('btn', 'btn-eliminar');
-        parrafo.append(eliminarBoton);
+        eliminarBoton.classList.add('btn-eliminar');
+        tdEliminarBoton.appendChild(eliminarBoton);
 
-        const hr = document.createElement('hr');
+        trBody.appendChild(tdId)
+        trBody.appendChild(tdNombre)
+        trBody.appendChild(tdPuesto)
+        trBody.appendChild(tdEditarBoton)
+        trBody.appendChild(tdEliminarBoton)
 
-        divEmpleados.appendChild(parrafo);
-        divEmpleados.appendChild(hr);
-    });
+        tBody.appendChild(trBody)
+    })
+    
+    table.appendChild(tHead)
+    table.appendChild(tBody)
+
+    divEmpleados.appendChild(table)
 }
 
 function cargarEmpleado(empleado) {
